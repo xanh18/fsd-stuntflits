@@ -7,7 +7,9 @@ import {AppComponent} from "./app.component";
 const routes: Routes = [
   {path: '', component: AppComponent},
   {path: 'discount', component: DiscountComponent},
-  { path: '**', redirectTo: '' }
+  {path: 'discount/edit:discountId', component: DiscountComponent},
+  {path: '**', redirectTo: '' },
+
 ];
 
 @NgModule({

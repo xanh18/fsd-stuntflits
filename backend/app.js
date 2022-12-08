@@ -31,30 +31,30 @@ app.post("/api/discounts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content
   })
-  discount.save();
+  discount.save().then(createdDiscount => {
 
-  res.status(201).json({
-    message: 'Post added successfully'
+    res.status(201).json({
+      message: 'Post added successfully',
+      discountId: createdDiscount._id
+    });
   });
+
 });
 
 app.get("/api/discounts", (req, res, next) => {
-  const posts = [
-    {
-      id: "fadf12421l",
-      title: "First server-side post",
-      content: "This is coming from the server"
-    },
-    {
-      id: "ksajflaj132",
-      title: "Second server-side post",
-      content: "This is coming from the server!"
-    }
-  ];
-  res.status(200).json({
-    message: "Posts fetched successfully!",
-    posts: posts
-  });
+  Discount.find().then(documents => {
+    res.status(200).json({
+      message: "Posts fetched successfully!",
+      discounts: documents
+    });
+  } );
 });
+
+app.delete("/api/discounts/:id",(req,res,next) => {
+  Discount.deleteOne({_id: req.params.id}).then(result => {console.log(result)
+  res.status(200).json({message: "Discount deleted!"})
+  });
+
+})
 
 module.exports = app;

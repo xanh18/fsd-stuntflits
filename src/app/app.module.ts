@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { DiscountComponent } from './discount/discount.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule, HttpHandler, HttpHeaders} from "@angular/common/http";
+import { EditDisountComponent } from './discount/edit-disount/edit-disount.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DiscountComponent
+    DiscountComponent,
+    EditDisountComponent
   ],
   imports: [
     BrowserModule,

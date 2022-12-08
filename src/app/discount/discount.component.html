@@ -1,10 +1,22 @@
 <p>Disocunt pagina</p>
 
+<div class="card" style="width: 18rem;" *ngFor="let discount of discounts">
+  <div class="card-body">
+    <h5 class="card-title">{{discount.title}}</h5>
+    <p class="card-text">{{discount.content}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+  <button type="button" class="btn btn-danger" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
+</div>
+
+
+
+<!--formulier-->
 <form (submit)="onAddPost(postForm)" #postForm="ngForm">
     <input
       type="text"
       name="title"
-      ngModel
+      ngModel="Discount"
       required
       minlength="3"
       placeholder="Post Title"
