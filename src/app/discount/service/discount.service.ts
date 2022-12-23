@@ -50,6 +50,18 @@ export class DiscountService {
     }));
   }
 
+  getDiscount(id: string)
+  {
+    return this.http.get<{_id: string, title:string, content:string}>(this.baseUrl + 'discounts/' + id);
+  }
+
+  updateDiscount(id: string, title: string, content: string)
+  {
+    const discount: Discount = {id: id, title: title, content: content};
+
+    return this.http.put(this.baseUrl + 'discounts/' + id, discount)
+  }
+
   DeleteDiscount(id: string)
   {
     return this.http.delete(this.baseUrl+ 'discounts/'+ id)

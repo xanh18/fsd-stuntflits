@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const Discount = require('./models/discount');
+const discountRoutes= ("./routes/discounts");
 
 const app = express();
 
@@ -21,40 +21,11 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
+    "GET, POST,PUT, PATCH, DELETE, OPTIONS"
   );
   next();
 });
 
-app.post("/api/discounts", (req, res, next) => {
-  const discount = new Discount({
-    title: req.body.title,
-    content: req.body.content
-  })
-  discount.save().then(createdDiscount => {
-
-    res.status(201).json({
-      message: 'Post added successfully',
-      discountId: createdDiscount._id
-    });
-  });
-
-});
-
-app.get("/api/discounts", (req, res, next) => {
-  Discount.find().then(documents => {
-    res.status(200).json({
-      message: "Posts fetched successfully!",
-      discounts: documents
-    });
-  } );
-});
-
-app.delete("/api/discounts/:id",(req,res,next) => {
-  Discount.deleteOne({_id: req.params.id}).then(result => {console.log(result)
-  res.status(200).json({message: "Discount deleted!"})
-  });
-
-})
+app.use("api/discounts", discountRoutes);
 
 module.exports = app;

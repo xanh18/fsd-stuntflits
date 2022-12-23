@@ -31,16 +31,6 @@ export class DiscountComponent implements OnInit{
 
   }
 
-
-
-  onAddPost(form: NgForm) {
-    if (form.invalid) {
-      return;
-    }
-    this.discountService.postDiscounts(form.value.title, form.value.content)
-    form.resetForm();
-  }
-
   handleDelete(id: string) {
     this.discountService.DeleteDiscount(id).subscribe(() => {
       const updatedDiscounts = this.discounts.filter(discount => discount.id !== discount.id);

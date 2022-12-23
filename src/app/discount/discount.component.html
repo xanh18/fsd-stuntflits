@@ -1,37 +1,15 @@
 <p>Disocunt pagina</p>
 
+
+<a [routerLink]="['/create']"  class="btn btn-primary">Nieuwe Aanbieding</a>
+
 <div class="card" style="width: 18rem;" *ngFor="let discount of discounts">
   <div class="card-body">
     <h5 class="card-title">{{discount.title}}</h5>
     <p class="card-text">{{discount.content}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+
   </div>
+  <a [routerLink]="['/edit', discount.id]"  class="btn btn-primary">Bewerk Aanbieding</a>
   <button type="button" class="btn btn-danger" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
 </div>
-
-
-
-<!--formulier-->
-<form (submit)="onAddPost(postForm)" #postForm="ngForm">
-    <input
-      type="text"
-      name="title"
-      ngModel="Discount"
-      required
-      minlength="3"
-      placeholder="Post Title"
-      #title="ngModel">
-
-      <textarea
-        rows="4"
-        name="content"
-        ngModel
-        required
-        placeholder="Post Content"
-        #content="ngModel"></textarea>
-
-  <button
-
-    type="submit">Save Discount</button>
-</form>
 
