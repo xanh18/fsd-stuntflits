@@ -1,0 +1,23 @@
+
+
+<div class="card" style="width: 18rem;" *ngFor="let comment of comments">
+  <div class="card-body">
+    User: <h5 class="card-title">{{comment?.value}}</h5>
+  </div>
+</div>
+
+
+
+<form (submit)="onAddComment(commentForm)" #commentForm="ngForm">
+  <input
+    type="text"
+    name="enteredValue"
+    [ngModel]="comment?.value"
+    required
+    minlength="3"
+    placeholder="Plaats een comment"
+    #title="ngModel">
+
+  <button
+    type="submit">Plaats Comment</button>
+</form>

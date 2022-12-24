@@ -2,7 +2,7 @@ const express = require("express");
 const Discount = require("../models/discount");
 
 
-const router = express.router();
+const router = express.Router();
 
 router.post("", (req, res, next) => {
   const discount = new Discount({

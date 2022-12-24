@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const discountRoutes= ("./routes/discounts");
+const discountRoutes = require("./routes/discounts");
+const commentRoutes = require("./routes/comments")
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("api/discounts", discountRoutes);
+app.use("/api/discounts", discountRoutes);
+app.use("/api/comments", commentRoutes);
 
 module.exports = app;
