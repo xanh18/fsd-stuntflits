@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 
 const Discount = require('./models/discount');
 
+const userRoutes = require("./routes/user");
+
 const app = express();
 
 mongoose.connect("mongodb+srv://xanh1995:welkom123@cluster0.fhmbe54.mongodb.net/?retryWrites=true&w=majority").then(() =>{
@@ -56,5 +58,7 @@ app.get("/api/discounts", (req, res, next) => {
     posts: posts
   });
 });
+
+app.use("/api/user", userRoutes);
 
 module.exports = app;

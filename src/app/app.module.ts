@@ -6,11 +6,19 @@ import { AppComponent } from './app.component';
 import { DiscountComponent } from './discount/discount.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule, HttpHandler, HttpHeaders} from "@angular/common/http";
+import { ProfileComponent } from './profile/profile.component';
+import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DiscountComponent
+    DiscountComponent,
+    ProfileComponent,
+    HeaderComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
