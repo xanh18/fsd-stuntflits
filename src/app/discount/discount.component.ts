@@ -11,8 +11,6 @@ import {map} from "rxjs";
 })
 export class DiscountComponent implements OnInit{
 
-  enteredTitle = "";
-  enteredContent = "";
   discounts : Discount[] = [];
 
   discountId: EventEmitter<string> = new EventEmitter<string>();

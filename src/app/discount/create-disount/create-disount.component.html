@@ -1,23 +1,13 @@
 <!--formulier-->
 <form (submit)="onAddPost(postForm)" #postForm="ngForm">
-  <input
-    type="text"
-    name="title"
-    [ngModel]="discount?.title"
-    required
-    minlength="3"
-    placeholder="Post Title"
-    #title="ngModel">
+    <input type="text" name="title" [ngModel]="discount?.title" required minlength="3" placeholder="Post Title" #title="ngModel">
 
-  <textarea
-    rows="4"
-    name="content"
-    [ngModel]="discount?.content"
-    required
-    placeholder="Post Content"
-    #content="ngModel"></textarea>
-
-  <button
-
-    type="submit">Save Discount</button>
+    <input type="text" name="category" [ngModel]="discount?.category" required minlength="3" placeholder="Post category" #category="ngModel">
+    <input type="text" name="expirydate" [ngModel]="discount?.expirydate" required minlength="3" placeholder="DD-MM-YYYY" #expirydate="ngModel">
+    <textarea rows="4" name="content" [ngModel]="discount?.content" required placeholder="Post Content" #content="ngModel"></textarea>
+    <input type="text" name="newprice" [ngModel]="discount?.newprice" required minlength="3" placeholder="Post New Price" #newprice="ngModel">
+    <input type="text" name="oldprice" [ngModel]="discount?.oldprice" required minlength="3" placeholder="Post Old Price" #oldprice="ngModel">
+    <input type="text" name="shop" [ngModel]=" discount?.shop" required minlength="3" placeholder="Post Shop" #shop="ngModel">
+    <input type="text " name="location" [ngModel]="discount?.location" required minlength="3" placeholder="Post Location" #location="ngModel">
+    <button type="submit ">Save Discount</button>
 </form>

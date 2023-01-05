@@ -3,6 +3,7 @@ import {DiscountService} from "../service/discount.service";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {Discount} from "../../models/Discount";
 import {NgForm} from "@angular/forms";
+import { SchemaTypeOptions } from 'mongoose';
 
 @Component({
   selector: 'app-create-disount',
@@ -10,8 +11,6 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./create-disount.component.css']
 })
 export class CreateDisountComponent  implements  OnInit{
-  enteredTitle = "";
-  enteredContent = "";
   private mode = "create";
   private discountId! : string | null;
   discount!: Discount;
@@ -28,7 +27,7 @@ export class CreateDisountComponent  implements  OnInit{
         this.mode = 'edit';
         this.discountId = paramMap.get('discountId') as string;
         this.discountService.getDiscount(this.discountId).subscribe(discountData =>{
-          this.discount = {id: discountData._id, title: discountData.title, content: discountData.content}
+          this.discount = {id: discountData._id, title: discountData.title, category: discountData.category, expirydate: discountData.expirydate, content: discountData.content, newprice: discountData.newprice, oldprice: discountData.oldprice, shop: discountData.shop, location: discountData.location}
         });
       } else
       {
@@ -45,9 +44,9 @@ export class CreateDisountComponent  implements  OnInit{
     }
     if (this.mode === "create")
     {
-      this.discountService.postDiscounts(form.value.title, form.value.content)
+      this.discountService.postDiscounts(form.value.title, form.value.category, form.value.expirydate, form.value.content, form.value.newprice, form.value.oldprice, form.value.shop, form.value.location)
     } else {
-      this.discountService.updateDiscount(this.discountId!, form.value.title, form.value.content).subscribe(() => {})
+      this.discountService.updateDiscount(this.discountId!, form.value.title, form.value.category, form.value.expirydate, form.value.content, form.value.newprice, form.value.oldprice, form.value.shop, form.value.location).subscribe(() => {})
 
     }
     form.resetForm();

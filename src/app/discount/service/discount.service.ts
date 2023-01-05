@@ -17,15 +17,21 @@ export class DiscountService {
   {
 
   }
-  postDiscounts(title: string, content: string)
+  postDiscounts(title: string, category:string, expirydate:string, content: string, newprice:string, oldprice:string, shop:string, location:string)
   {
     const body =
     {
       id : null,
       title,
-      content
+      category,
+      expirydate,
+      content,
+      newprice,
+      oldprice,
+      shop,
+      location
     }
-
+      
 
     return this.http.post<{message: string, discountId: string}>(this.baseUrl+'discounts',body, {headers:this.headers})
       .subscribe(responseData =>
@@ -43,7 +49,13 @@ export class DiscountService {
       return discountData.discounts.map( discount => {
         return {
           title: discount.title,
+          category: discount.category,
+          expirydate: discount.expirydate,
           content: discount.content,
+          newprice: discount.newprice, 
+          oldprice: discount.oldprice,
+          shop: discount.shop,
+          location: discount.location,
           id: discount._id
         }
       })
@@ -52,12 +64,11 @@ export class DiscountService {
 
   getDiscount(id: string)
   {
-    return this.http.get<{_id: string, title:string, content:string}>(this.baseUrl + 'discounts/' + id);
+    return this.http.get<{_id: string, title:string, category:string, expirydate:string, content:string, newprice:string, oldprice:string, shop:string, location:string}>(this.baseUrl + 'discounts/' + id);
   }
 
-  updateDiscount(id: string, title: string, content: string)
-  {
-    const discount: Discount = {id: id, title: title, content: content};
+  updateDiscount(id: string, title: string, category:string, expirydate:string, content: string, newprice:string, oldprice:string, shop:string, location:string){
+    const discount: Discount = {id: id, title: title, category: category, expirydate: expirydate, content: content, newprice: newprice, oldprice: oldprice, shop: shop, location: location};
 
     return this.http.put(this.baseUrl + 'discounts/' + id, discount)
   }
