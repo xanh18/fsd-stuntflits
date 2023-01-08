@@ -17,24 +17,23 @@ export class DiscountService {
   {
 
   }
-  postDiscounts(title: string, content: string)
+  postDiscounts(title: string, content: string, image: File)
   {
-    const body =
-    {
-      id : null,
-      title,
-      content
-    }
 
+    const body = new FormData();
+    body.append("title",title);
+    body.append("content",content);
+    body.append("image",image, title);
 
-    return this.http.post<{message: string, discountId: string}>(this.baseUrl+'discounts',body, {headers:this.headers})
+    return this.http.post<{message: string, discount: Discount}>(this.baseUrl+'discounts',body)
       .subscribe(responseData =>
       {
-        const Id = responseData.discountId;
-        // @ts-ignore
-        body.id = Id;
+        const discount: Discount =
+          {id: responseData.discount.id,
+            title: title,
+            content:content,
+          imagePath: responseData.discount.imagePath};
         this.discount.push(body);
-
       });
   }
   getDiscounts()
@@ -44,6 +43,7 @@ export class DiscountService {
         return {
           title: discount.title,
           content: discount.content,
+          imagePath: discount.imagePath,
           id: discount._id
         }
       })
@@ -52,14 +52,27 @@ export class DiscountService {
 
   getDiscount(id: string)
   {
-    return this.http.get<{_id: string, title:string, content:string}>(this.baseUrl + 'discounts/' + id);
+    return this.http.get<{_id: string, title:string, content:string, imagePath: string}>(this.baseUrl + 'discounts/' + id);
   }
 
-  updateDiscount(id: string, title: string, content: string)
+  updateDiscount(id: string, title: string, content: string, image: File | string)
   {
-    const discount: Discount = {id: id, title: title, content: content};
+    let body: Discount | FormData;
+    if (typeof(image) === 'object')
+    {
+      body = new FormData();
+      body.append("id", id)
+      body.append("title",title);
+      body.append("content",content);
+      body.append("image",image, title);
 
-    return this.http.put(this.baseUrl + 'discounts/' + id, discount)
+    }else
+    {
+      body = {id: id, title: title, content: content, imagePath: image}
+    }
+    // @ts-ignore
+
+    return this.http.put(this.baseUrl + 'discounts/' + id, body)
   }
 
   DeleteDiscount(id: string)
