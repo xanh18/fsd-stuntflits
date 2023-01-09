@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const discountSchema = mongoose.Schema({
     title: { type: String, required: true },
-    category: { type: String, required: false },
+    categories: { type: String, required: false },
     expirydate: { type: String, required: false },
     content: { type: String, required: true },
     newprice: { type: String, required: false },

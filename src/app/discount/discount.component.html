@@ -8,7 +8,7 @@
         Titel:
         <h5 class="card-title">{{discount.title}}</h5>
         Categorie:
-        <h6 class="card-title">{{discount.category}}</h6>
+        <h6 class="card-title">{{discount.categories}}</h6>
         Verval datum:
         <h6 class="card-title">{{discount.expirydate}}</h6>
         Omschrijving:
@@ -27,10 +27,10 @@
         <img [src]="discount.imagePath" [alt]="discount.title">
     </div>
 
-</div>
 
-<app-comment [discountId]="discount.id"></app-comment>
 
-<a [routerLink]="['/edit', discount.id]" class="btn btn-primary">Bewerk Aanbieding</a>
-<button type="button" class="btn btn-danger" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
+    <app-comment [discountId]="discount.id"></app-comment>
+
+    <a [routerLink]="['/edit', discount.id]" class="btn btn-primary">Bewerk Aanbieding</a>
+    <button type="button" class="btn btn-danger" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
 </div>

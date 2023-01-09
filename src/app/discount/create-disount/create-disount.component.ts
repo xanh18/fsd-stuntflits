@@ -26,7 +26,13 @@ export class CreateDisountComponent  implements  OnInit{
         title: new FormControl(null, {
           validators: [Validators.required, Validators.minLength(3)]
         }),
+        categories: new FormControl(null, {validators: [Validators.required]}),
+        expirydate: new FormControl(null, {validators: [Validators.required]}),
         content: new FormControl(null, {validators: [Validators.required]}),
+        newprice: new FormControl(null, {validators: [Validators.required]}),
+        oldprice: new FormControl(null, {validators: [Validators.required]}),
+        shop: new FormControl(null, {validators: [Validators.required]}),
+        location: new FormControl(null, {validators: [Validators.required]}),
         image: new FormControl(null,{ validators: [Validators.required], asyncValidators: [mimeType]})
     });
 
@@ -36,9 +42,9 @@ export class CreateDisountComponent  implements  OnInit{
         this.mode = 'edit';
         this.discountId = paramMap.get('discountId') as string;
         this.discountService.getDiscount(this.discountId).subscribe(discountData =>{
-          this.discount = {id: discountData._id, title: discountData.title, content: discountData.content, imagePath: discountData.imagePath}
+          this.discount = {id: discountData._id, title: discountData.title, categories: discountData.categories, expirydate: discountData.expirydate, content: discountData.content, newprice: discountData.newprice, oldprice: discountData.oldprice, shop: discountData.shop, location: discountData.location, imagePath: discountData.imagePath}
         });
-        this.form.setValue({title: this.discount.title, content: this.discount.content,image: this.discount.imagePath });
+        this.form.setValue({title: this.discount.title, categories: this.discount.categories, expirydate: this.discount.expirydate, content: this.discount.content, newprice: this.discount.newprice, oldprice: this.discount.oldprice, shop: this.discount.shop, location: this.discount.location, image: this.discount.imagePath });
       } else
       {
         this.mode = 'create';
@@ -54,9 +60,10 @@ export class CreateDisountComponent  implements  OnInit{
     }
     if (this.mode === "create")
     {
-      this.discountService.postDiscounts(this.form.value.title, this.form.value.content, this.form.value.image)
+      // console.log(this.form.value.categories)
+      this.discountService.postDiscounts(this.form.value.title, this.form.value.categories, this.form.value.expirydate, this.form.value.content, this.form.value.newprice, this.form.value.oldprice, this.form.value.shop, this.form.value.location, this.form.value.image)
     } else {
-      this.discountService.updateDiscount(this.discountId!, this.form.value.title, this.form.value.content, this.form.value.image).subscribe(() => {})
+      this.discountService.updateDiscount(this.discountId!, this.form.value.title, this.form.value.categories, this.form.value.expirydate, this.form.value.content, this.form.value.newprice, this.form.value.oldprice, this.form.value.shop, this.form.value.location, this.form.value.image).subscribe(() => {})
 
     }
     this.form.reset();

@@ -17,12 +17,18 @@ export class DiscountService {
   {
 
   }
-  postDiscounts(title: string, content: string, image: File)
+  postDiscounts(title: string, categories: string, expirydate:string, content: string, newprice:string, oldprice:string, shop:string, location:string, image: File)
   {
 
     const body = new FormData();
     body.append("title",title);
-    body.append("content",content);
+    body.append("categories", categories);
+    body.append("expirydate", expirydate);
+    body.append("content", content);
+    body.append("newprice",newprice);
+    body.append("oldprice",oldprice);
+    body.append("shop",shop);
+    body.append("location",location);
     body.append("image",image, title);
 
     return this.http.post<{message: string, discount: Discount}>(this.baseUrl+'discounts',body)
@@ -30,8 +36,14 @@ export class DiscountService {
       {
         const discount: Discount =
           {id: responseData.discount.id,
-            title: title,
-            content:content,
+            title: title,     
+            categories: categories, 
+            expirydate:expirydate, 
+            content: content, 
+            newprice:newprice, 
+            oldprice:oldprice, 
+            shop:shop, 
+            location:location,
           imagePath: responseData.discount.imagePath};
         this.discount.push(body);
       });
@@ -42,7 +54,7 @@ export class DiscountService {
       return discountData.discounts.map( discount => {
         return {
           title: discount.title,
-          category: discount.category,
+          categories: discount.categories,
           expirydate: discount.expirydate,
           content: discount.content,
           newprice: discount.newprice, 
@@ -58,10 +70,10 @@ export class DiscountService {
 
   getDiscount(id: string)
   {
-    return this.http.get<{_id: string, title:string, content:string, imagePath: string}>(this.baseUrl + 'discounts/' + id);
+    return this.http.get<{_id: string, title: string, categories:string, expirydate:string, content: string, newprice:string, oldprice:string, shop:string, location:string, imagePath: string}>(this.baseUrl + 'discounts/' + id);
   }
 
-  updateDiscount(id: string, title: string, content: string, image: File | string)
+  updateDiscount(id: string, title: string, categories:string, expirydate:string, content: string, newprice:string, oldprice:string, shop:string, location:string, image: File | string)
   {
     let body: Discount | FormData;
     if (typeof(image) === 'object')
@@ -69,12 +81,18 @@ export class DiscountService {
       body = new FormData();
       body.append("id", id)
       body.append("title",title);
+      body.append("categories", categories);
+      body.append("expirydate", expirydate);
       body.append("content",content);
+      body.append("newprice", newprice);
+      body.append("oldprice", oldprice);
+      body.append("shop", shop);
+      body.append("location", location);
       body.append("image",image, title);
 
     }else
     {
-      body = {id: id, title: title, content: content, imagePath: image}
+      body = {id: id, title: title, categories: categories, expirydate:expirydate, content: content, newprice:newprice, oldprice:oldprice, shop:shop, location:location, imagePath: image}
     }
     // @ts-ignore
 

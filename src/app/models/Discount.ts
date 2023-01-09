@@ -3,7 +3,7 @@ import { provideCloudflareLoader } from "@angular/common";
 export interface Discount {
   id: string;
   title: string;
-  category: string;
+  categories: string;
   expirydate: string;
   content: string;
   newprice: string;

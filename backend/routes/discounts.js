@@ -33,7 +33,7 @@ router.post("", multer({ storage: storage }).single("image"), (req, res, next) =
     const url = req.protocol + '://' + req.get("host");
     const discount = new Discount({
         title: req.body.title,
-        category: req.body.category,
+        categories: req.body.categories,
         expirydate: req.body.expirydate,
         content: req.body.content,
         newprice: req.body.newprice,
@@ -87,7 +87,7 @@ router.put("/:id", multer({ storage: storage }).single("image"), (req, res, next
     const discount = new Discount({
         _id: req.body.id,
         title: req.body.title,
-        category: req.body.category,
+        categories: req.body.categories,
         expirydate: req.body.expirydate,
         content: req.body.content,
         newprice: req.body.newprice,
