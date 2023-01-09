@@ -1,0 +1,23 @@
+<!--formulier-->
+<form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  <input
+    type="text"
+    name="title"
+    [ngModel]="discount?.title"
+    required
+    minlength="3"
+    placeholder="Post Title"
+    #title="ngModel">
+
+  <textarea
+    rows="4"
+    name="content"
+    [ngModel]="discount?.content"
+    required
+    placeholder="Post Content"
+    #content="ngModel"></textarea>
+
+  <button
+
+    type="submit">Save Discount</button>
+</form>

@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NgForm} from "@angular/forms";
 import {DiscountService} from "./service/discount.service";
+import {Discount} from "../models/Discount";
+import {map} from "rxjs";
 
 @Component({
   selector: 'app-discount',
@@ -11,22 +13,24 @@ export class DiscountComponent implements OnInit{
 
   enteredTitle = "";
   enteredContent = "";
+  discounts : Discount[] = [];
 
+  discountId: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private discountService: DiscountService) {
   }
 
 
   ngOnInit() {
-  //  this.name.valueChanges.subscribe(data => console.log(data));
+  this.discountService.getDiscounts().subscribe((transformedDiscounts) => {
+    this.discounts = transformedDiscounts
+    })
   }
 
-
-  onAddPost(form: NgForm) {
-    if (form.invalid) {
-      return;
-    }
-    this.discountService.postDiscounts(form.value.title, form.value.content).subscribe(() => {});
-    form.resetForm();
+  handleDelete(id: string) {
+    this.discountService.DeleteDiscount(id).subscribe(() => {
+      const updatedDiscounts = this.discounts.filter(discount => discount.id !== discount.id);
+      this.discounts = updatedDiscounts;
+    })
   }
 }

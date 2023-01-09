@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const Discount = require('./models/discount');
+const discountRoutes = require("./routes/discounts");
+const commentRoutes = require("./routes/comments")
 
 const userRoutes = require("./routes/user");
 
@@ -23,41 +24,13 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
+    "GET, POST,PUT, PATCH, DELETE, OPTIONS"
   );
   next();
 });
 
-app.post("/api/discounts", (req, res, next) => {
-  const discount = new Discount({
-    title: req.body.title,
-    content: req.body.content
-  })
-  discount.save();
-
-  res.status(201).json({
-    message: 'Post added successfully'
-  });
-});
-
-app.get("/api/discounts", (req, res, next) => {
-  const posts = [
-    {
-      id: "fadf12421l",
-      title: "First server-side post",
-      content: "This is coming from the server"
-    },
-    {
-      id: "ksajflaj132",
-      title: "Second server-side post",
-      content: "This is coming from the server!"
-    }
-  ];
-  res.status(200).json({
-    message: "Posts fetched successfully!",
-    posts: posts
-  });
-});
+app.use("/api/discounts", discountRoutes);
+app.use("/api/comments", commentRoutes);
 
 app.use("/api/user", userRoutes);
 
