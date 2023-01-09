@@ -10,4 +10,5 @@ export interface Discount {
   oldprice: string;
   shop: string;
   location: string;
+  imagePath: string;
 }

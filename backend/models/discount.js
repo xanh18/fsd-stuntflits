@@ -8,7 +8,9 @@ const discountSchema = mongoose.Schema({
     newprice: { type: String, required: false },
     oldprice: { type: String, required: false },
     shop: { type: String, required: false },
-    location: { type: String, required: false }
+    location: { type: String, required: false },
+    date: { type: Date },
+    imagePath: { type: String, required: true }
 });
 
 module.exports = mongoose.model('Discount', discountSchema);
