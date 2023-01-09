@@ -8,6 +8,10 @@
     Titel: <h5 class="card-title">{{discount.title}}</h5>
     Omschrijving: <p class="card-text">{{discount.content}}</p>
 
+    <div class="post-image">
+      <img [src]="discount.imagePath" [alt]="discount.title">
+    </div>
+
   </div>
 
   <app-comment [discountId]="discount.id"></app-comment>
