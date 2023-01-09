@@ -5,12 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DiscountComponent } from './discount/discount.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClient, HttpClientModule, HttpHandler, HttpHeaders, HTTP_INTERCEPTORS} from "@angular/common/http";
-import { ProfileComponent } from './profile/profile.component';
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { AuthInterceptor } from './auth/auth-interceptor';
+import {HttpClient, HttpClientModule, HttpHandler, HttpHeaders} from "@angular/common/http";
 import { CreateDisountComponent } from './discount/create-disount/create-disount.component';
 import { CommentComponent } from './discount/comment/comment.component';
 
@@ -18,10 +13,6 @@ import { CommentComponent } from './discount/comment/comment.component';
   declarations: [
     AppComponent,
     DiscountComponent,
-    ProfileComponent,
-    HeaderComponent,
-    LoginComponent,
-    SignupComponent,
     CreateDisountComponent,
     CommentComponent
   ],
@@ -32,7 +23,7 @@ import { CommentComponent } from './discount/comment/comment.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
