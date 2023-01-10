@@ -1,0 +1,13 @@
+<div>
+    <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
+      <div class="form-group">
+        <input name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
+        <div *ngIf="emailInput.invalid" class="text-danger">Voer een geldig e-mailadres in.</div>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" ngModel placeholder="Password" #passwordInput="ngModel" required>
+        <div *ngIf="passwordInput.invalid" class="text-danger">Voer een geldig wachtwoord in.</div>
+      </div>
+      <button class="btn btn-primary" type="submit">Login</button>
+    </form>
+</div>
