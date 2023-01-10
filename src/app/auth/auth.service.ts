@@ -1,4 +1,3 @@
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -44,7 +43,10 @@ export class AuthService {
       }
 
       logout() {
+
         this.isAuthenticated = false;
         this.authStatusListener.next(false);
+
+
       }
 }
