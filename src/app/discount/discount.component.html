@@ -3,8 +3,8 @@
 
 <a [routerLink]="['/create']" class="btn btn-primary">Nieuwe Aanbieding</a>
 
-<div class="card" style="width: 18rem;" *ngFor="let discount of discounts">
-    <div class="card-body">
+<div class="card m-2 p-3" style="width: 18rem;" *ngFor="let discount of discounts">
+    <div class="card-body p-2">
         Titel:
         <h5 class="card-title">{{discount.title}}</h5>
         Categorie:
@@ -22,15 +22,19 @@
         Locatie:
         <h6 class="card-title">{{discount.location}}</h6>
 
-    </div>
-    <div class="post-image">
+      <div class="post-image">
         <img [src]="discount.imagePath" [alt]="discount.title">
+      </div>
+
+      Omschrijving: <p class="card-text">{{discount.content}}</p>
+
     </div>
 
+    <app-comment [discountId]="discount.id" ></app-comment>
 
-
-    <app-comment [discountId]="discount.id"></app-comment>
-
-    <a [routerLink]="['/edit', discount.id]" class="btn btn-primary">Bewerk Aanbieding</a>
-    <button type="button" class="btn btn-danger" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
+    <div *ngIf="userIsAuthenticated">
+      <a [routerLink]="['/edit', discount.id]"  class="btn btn-primary m-2">Bewerk Aanbieding</a>
+      <button type="button" class="btn btn-danger m-2" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
+    </div>
+  </div>
 </div>
