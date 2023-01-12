@@ -40,8 +40,9 @@ router.post(
   const discount = new Discount({
     title: req.body.title,
     content: req.body.content,
-    imagePath: url+ "/images/"+ req.file.filename
-  })
+    imagePath: url+ "/images/"+ req.file.filename,
+    user: req.userData.userId
+  });
   discount.save().then(createdDiscount => {
 
     res.status(201).json({

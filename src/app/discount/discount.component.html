@@ -1,8 +1,5 @@
 <p>Discount pagina</p>
 
-
-<a [routerLink]="['/create']"  class="btn btn-primary">Nieuwe Aanbieding</a>
-
 <div class="card" style="width: 18rem;" *ngFor="let discount of discounts">
   <div class="card-body">
     Titel: <h5 class="card-title">{{discount.title}}</h5>
@@ -15,8 +12,9 @@
   </div>
 
   <app-comment [discountId]="discount.id"></app-comment>
-
-  <a [routerLink]="['/edit', discount.id]"  class="btn btn-primary">Bewerk Aanbieding</a>
-  <button type="button" class="btn btn-danger" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
+  <div *ngIf="userIsAuthenticated">
+    <a [routerLink]="['/edit', discount.id]"  class="btn btn-primary">Bewerk Aanbieding</a>
+    <button type="button" class="btn btn-danger" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
+  </div>
 </div>
 
