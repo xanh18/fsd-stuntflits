@@ -1,12 +1,15 @@
 <p>Disocunt pagina</p>
 
-
-<a [routerLink]="['/create']" class="btn btn-primary">Nieuwe Aanbieding</a>
-
+<div class="row">
 <div class="card m-2 p-3" style="width: 18rem;" *ngFor="let discount of discounts">
     <div class="card-body p-2">
-        Titel:
+
         <h5 class="card-title">{{discount.title}}</h5>
+
+        <div class="post-image">
+          <img [src]="discount.imagePath" [alt]="discount.title">
+        </div>
+  
         Categorie:
         <h6 class="card-title">{{discount.categories}}</h6>
         Verval datum:
@@ -22,10 +25,6 @@
         Locatie:
         <h6 class="card-title">{{discount.location}}</h6>
 
-      <div class="post-image">
-        <img [src]="discount.imagePath" [alt]="discount.title">
-      </div>
-
       Omschrijving: <p class="card-text">{{discount.content}}</p>
 
     </div>
@@ -37,4 +36,4 @@
       <button type="button" class="btn btn-danger m-2" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
     </div>
  </div>
-
+</div>
