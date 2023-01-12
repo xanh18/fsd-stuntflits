@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Discount} from "../../models/Discount";
 import {map} from "rxjs";
+import { UrlSerializer } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class DiscountService {
   {
 
   }
-  postDiscounts(title: string, categories: string, expirydate:string, content: string, newprice:string, oldprice:string, shop:string, location:string, image: File)
+  postDiscounts(title: string, categories: string, expirydate:string, content: string, user: string, newprice:string, oldprice:string, shop:string, location:string, image: File)
   {
 
     const body = new FormData();
@@ -44,6 +45,7 @@ export class DiscountService {
             oldprice:oldprice, 
             shop:shop, 
             location:location,
+            user: user,
           imagePath: responseData.discount.imagePath};
         this.discount.push(body);
       });
@@ -62,7 +64,8 @@ export class DiscountService {
           shop: discount.shop,
           location: discount.location,
           imagePath: discount.imagePath,
-          id: discount._id
+          id: discount._id,
+          user: discount.user
         }
       })
     }));
@@ -70,7 +73,7 @@ export class DiscountService {
 
   getDiscount(id: string)
   {
-    return this.http.get<{_id: string, title: string, categories:string, expirydate:string, content: string, newprice:string, oldprice:string, shop:string, location:string, imagePath: string}>(this.baseUrl + 'discounts/' + id);
+    return this.http.get<{_id: string, title: string, categories:string, expirydate:string, content: string, newprice:string, oldprice:string, shop:string, location:string, user: string, imagePath: string}>(this.baseUrl + 'discounts/' + id);
   }
 
   updateDiscount(id: string, title: string, categories:string, expirydate:string, content: string, newprice:string, oldprice:string, shop:string, location:string, image: File | string)
@@ -92,7 +95,13 @@ export class DiscountService {
 
     }else
     {
-      body = {id: id, title: title, categories: categories, expirydate:expirydate, content: content, newprice:newprice, oldprice:oldprice, shop:shop, location:location, imagePath: image}
+      body = {
+        id: id, 
+        title: title, categories: categories, expirydate:expirydate, 
+        content: content, newprice:newprice, oldprice:oldprice, shop:shop, location:location, 
+        imagePath: image, 
+        user: null
+      };
     }
     // @ts-ignore
 

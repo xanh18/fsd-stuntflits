@@ -31,20 +31,25 @@ const storage = multer.diskStorage({
     }
 });
 
-router.post("", checkAuth, multer({ storage: storage }).single("image"), (req, res, next) => {
-    const url = req.protocol + '://' + req.get("host");
-    const discount = new Discount({
-        title: req.body.title,
-        categories: req.body.categories,
-        expirydate: req.body.expirydate,
-        content: req.body.content,
-        newprice: req.body.newprice,
-        oldprice: req.body.oldprice,
-        shop: req.body.shop,
-        location: req.body.location,
-        imagePath: url + "/images/" + req.file.filename
-    })
-    discount.save().then(createdDiscount => {
+router.post(
+  "",
+  checkAuth,
+  multer({ storage: storage }).single("image"),
+  (req, res, next) => {
+  const url = req.protocol + '://' + req.get("host");
+  const discount = new Discount({
+    title: req.body.title,
+    categories: req.body.categories,
+    expirydate: req.body.expirydate,
+    content: req.body.content,
+    newprice: req.body.newprice,
+    oldprice: req.body.oldprice,
+    shop: req.body.shop,
+    location: req.body.location,
+    imagePath: url + "/images/" + req.file.filename,
+    user: req.userData.userId
+  });
+  discount.save().then(createdDiscount => {
 
         res.status(201).json({
             message: 'Post added successfully',

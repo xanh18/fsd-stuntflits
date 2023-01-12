@@ -10,7 +10,8 @@ const discountSchema = mongoose.Schema({
     shop: { type: String, required: false },
     location: { type: String, required: false },
     date: { type: Date },
-    imagePath: { type: String, required: true }
+    imagePath: { type: String, required: true },
+    user: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true}
 });
 
 module.exports = mongoose.model('Discount', discountSchema)

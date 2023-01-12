@@ -52,9 +52,12 @@ router.post("/login", (req, res, next) => {
           "secret_this_should_be_longer",
           { expiresIn: "1h" }
         );
-        res.status(200).json({
+        return res.status(200).json({
+          message: 'Geldige gebruiker',
           token: token,
-          expiresIn: 3600
+          expiresIn: 3600,
+          userId: fetchedUser._id,
+          username: fetchedUser.username
         });
       })
       .catch(err => {

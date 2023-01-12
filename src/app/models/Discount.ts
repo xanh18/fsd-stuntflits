@@ -6,9 +6,10 @@ export interface Discount {
   categories: string;
   expirydate: string;
   content: string;
+  user: string | null;
   newprice: string;
   oldprice: string;
   shop: string;
   location: string;
   imagePath: string | File;
-}
+} 
