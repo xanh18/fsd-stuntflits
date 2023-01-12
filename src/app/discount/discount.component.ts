@@ -4,6 +4,7 @@ import {DiscountService} from "./service/discount.service";
 import {Discount} from "../models/Discount";
 import {map, Subscription} from "rxjs";
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-discount',
@@ -21,7 +22,7 @@ export class DiscountComponent implements OnInit, OnDestroy{
   userIsAuthenticated = false;
   private authStatusSub: Subscription | undefined;
 
-  constructor(private discountService: DiscountService, private authService: AuthService) {
+  constructor(private discountService: DiscountService, private authService: AuthService, private router: Router) {
   }
 
 
@@ -41,6 +42,10 @@ export class DiscountComponent implements OnInit, OnDestroy{
     this.discountService.DeleteDiscount(id).subscribe(() => {
       const updatedDiscounts = this.discounts.filter(discount => discount.id !== discount.id);
       this.discounts = updatedDiscounts;
+      this.router.navigate(["/"]);
+      this.discountService.getDiscounts().subscribe((transformedDiscounts) => {
+        this.discounts = transformedDiscounts
+        });
     })
   }
 

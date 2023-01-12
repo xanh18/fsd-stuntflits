@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/:id", (req, res, next) =>
 {
-  user.findById(req.params.id).then(discount =>
+  user.findById(req.params.id).then(user =>
   {
     if(user)
     {
@@ -18,7 +18,7 @@ router.get("/:id", (req, res, next) =>
     }
     else
     {
-        res.status(200).json({discount})
+        res.status(200).json({user})
     }
   })
 });

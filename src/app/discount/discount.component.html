@@ -1,20 +1,22 @@
 <p>Discount pagina</p>
+<div class="row">
+  <div class="card m-2 p-3" style="width: 18rem;" *ngFor="let discount of discounts">
+    <div class="card-body p-2">
+      <h5 class="card-title">{{discount.title}}</h5>
 
-<div class="card" style="width: 18rem;" *ngFor="let discount of discounts">
-  <div class="card-body">
-    Titel: <h5 class="card-title">{{discount.title}}</h5>
-    Omschrijving: <p class="card-text">{{discount.content}}</p>
+      <div class="post-image">
+        <img [src]="discount.imagePath" [alt]="discount.title">
+      </div>
 
-    <div class="post-image">
-      <img [src]="discount.imagePath" [alt]="discount.title">
+      Omschrijving: <p class="card-text">{{discount.content}}</p>
+
     </div>
 
-  </div>
+    <app-comment [discountId]="discount.id" ></app-comment>
 
-  <app-comment [discountId]="discount.id"></app-comment>
-  <div *ngIf="userIsAuthenticated">
-    <a [routerLink]="['/edit', discount.id]"  class="btn btn-primary">Bewerk Aanbieding</a>
-    <button type="button" class="btn btn-danger" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
+    <div *ngIf="userIsAuthenticated">
+      <a [routerLink]="['/edit', discount.id]"  class="btn btn-primary m-2">Bewerk Aanbieding</a>
+      <button type="button" class="btn btn-danger m-2" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
+    </div>
   </div>
 </div>
-
