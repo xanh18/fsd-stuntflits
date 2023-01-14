@@ -61,7 +61,10 @@ export class DiscountComponent implements OnInit, OnDestroy{
         var filterValue = $(this).find("option:selected").val()
         var panelValue =  $('#discount-posts .card-title-category').each(function(this: any, index: any ) {
 
-          if(filterValue === $(this).text())
+          if(filterValue === "")
+          {
+            $(this).parent().parent().show()
+          } else if(filterValue === $(this).text())
           {
             $(this).parent().parent().show()
           } else
