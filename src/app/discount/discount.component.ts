@@ -5,6 +5,7 @@ import {Discount} from "../models/Discount";
 import {map, Subscription} from "rxjs";
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+declare var $: any;
 
 @Component({
   selector: 'app-discount',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./discount.component.css']
 })
 export class DiscountComponent implements OnInit, OnDestroy{
+
 
   discounts : Discount[] = [];
 
@@ -50,4 +52,25 @@ export class DiscountComponent implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.authStatusSub?.unsubscribe();
   }
+
+  ngAfterViewInit()
+  {
+    $(document).ready(function () {
+      $("#filter-category").change(function(this: any) {
+
+        var filterValue = $(this).find("option:selected").val()
+        var panelValue =  $('#discount-posts .card-title-category').each(function(this: any, index: any ) {
+
+          if(filterValue === $(this).text())
+          {
+            $(this).parent().parent().show()
+          } else
+          {
+            $(this).parent().parent().hide()
+          }
+        });
+      });
+    });
+  }
 }
+

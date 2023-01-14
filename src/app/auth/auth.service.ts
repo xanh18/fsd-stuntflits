@@ -21,7 +21,7 @@ export class AuthService {
     getIsAuth() {
         return this.isAuthenticated;
       }
-    
+
       getAuthStatusListener() {
         return this.authStatusListener.asObservable();
       }
@@ -31,6 +31,7 @@ export class AuthService {
         this.http.post("http://localhost:3000/api/user/signup", authData)
         .subscribe(response => {
             console.log(response);
+          this.router.navigate(["/"]);
         });
     }
 
@@ -60,7 +61,7 @@ export class AuthService {
           return;
         }
         const now = new Date();
-        const expiresIn = authInformation!.expirationDate.getTime() - now.getTime(); 
+        const expiresIn = authInformation!.expirationDate.getTime() - now.getTime();
         if (expiresIn > 0) {
           this.token = authInformation!.token;
           this.isAuthenticated = true;
@@ -70,7 +71,7 @@ export class AuthService {
       }
 
       logout() {
-        
+
         this.token = null;
         this.isAuthenticated = false;
         this.authStatusListener.next(false);

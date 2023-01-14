@@ -1,17 +1,25 @@
 <p>Disocunt pagina</p>
 
-<div class="row">
+
+<select name="filter-category" id="filter-category">
+  <option value="AutoMotor">AutoMotor</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+<div class="row" id="discount-posts">
 <div class="card m-2 p-3" style="width: 18rem;" *ngFor="let discount of discounts">
-    <div class="card-body p-2">
+    <div class="card-body p-2" id="discount-post">
 
         <h5 class="card-title">{{discount.title}}</h5>
 
         <div class="post-image">
           <img [src]="discount.imagePath" [alt]="discount.title">
         </div>
-  
+
         Categorie:
-        <h6 class="card-title">{{discount.categories}}</h6>
+        <h6 class="card-title-category">{{discount.categories}}</h6>
         Verval datum:
         <h6 class="card-title">{{discount.expirydate}}</h6>
         Omschrijving:
@@ -24,8 +32,7 @@
         <h6 class="card-title">{{discount.shop}}</h6>
         Locatie:
         <h6 class="card-title">{{discount.location}}</h6>
-
-      Omschrijving: <p class="card-text">{{discount.content}}</p>
+        Omschrijving: <p class="card-text">{{discount.content}}</p>
 
     </div>
 
