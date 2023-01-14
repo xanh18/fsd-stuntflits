@@ -39,7 +39,7 @@ router.post("/login", (req, res, next) => {
         });
       }
       fetchedUser = user;
-      bcrypt.compare(req.body.password, user.password, (errsr, result) => {
+      bcrypt.compare(req.body.password, user.password, (err, result) => {
         if (!result) {
         return res.status(401).json({
         ok: 0,
