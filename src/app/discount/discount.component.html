@@ -5,7 +5,7 @@
   <option value="">--</option>
   <option value="ModeAccessoires">Mode & Accessoires</option>
   <option value="Elektronica">Elektronica</option>
-  <option value="FamilieKinderen">Familei & Kinderen</option>
+  <option value="FamilieKinderen">Familie & Kinderen</option>
   <option value="BeautyGezondheid">Beauty & Gezondheid</option>
   <option value="HomeLiving">Home & Living</option>
   <option value="Gaming">Gaming</option>
@@ -16,6 +16,10 @@
   <option value="SportOutdoor">Sport & Outdoor</option>
   <option value="Reizen">Reizen</option>
 </select>
+
+<div>
+    <input id="search-shop" type="text" name="search-shop" autocomplete="on" placeholder="Zoek Winkel">
+</div>
 
 <div class="row" id="discount-posts">
 <div class="card m-2 p-3" style="width: 18rem;" *ngFor="let discount of discounts">
@@ -38,7 +42,7 @@
         Oude prijs:
         <h6 class="card-title">{{discount.oldprice}}</h6>
         Winkel:
-        <h6 class="card-title">{{discount.shop}}</h6>
+            <h6 class="card-title-shop">{{discount.shop}}</h6>
         Locatie:
         <h6 class="card-title">{{discount.location}}</h6>
         Omschrijving: <p class="card-text">{{discount.content}}</p>
