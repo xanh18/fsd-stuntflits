@@ -10,6 +10,9 @@ const router = express.Router();
 router.post("/signup", (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(hash => {
         const user = new User({
+          username: req.body.username,
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
           email: req.body.email,
           password: hash
         });
@@ -56,8 +59,7 @@ router.post("/login", (req, res, next) => {
         message: 'Geldige gebruiker',
         token: token,
         expiresIn: 3600,
-        userId: fetchedUser._id,
-        username: fetchedUser.username
+        userId: fetchedUser._id
       });
     })
     .catch(err => {
@@ -66,6 +68,5 @@ router.post("/login", (req, res, next) => {
         });
     });
 });
-
 
 module.exports = router;

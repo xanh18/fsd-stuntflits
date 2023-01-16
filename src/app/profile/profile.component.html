@@ -1,3 +1,16 @@
 <h1>Profile</h1>
 
-<h5 class="card-title">{{user.username}}</h5>
+<div>
+    <form  #signupForm="ngForm">
+      <div class="form-group">
+        <input name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel">
+      </div>
+      <div class="form-group">
+        <input type="firtname" name="firstname" ngModel placeholder="Firstname" #passwordInput="ngModel" >
+      </div>
+      <div class="form-group">
+        <input type="lastname" name="lastname" ngModel placeholder="Lastname" #passwordInput="ngModel" >
+      </div>
+      <button class="btn btn-primary" type="submit">Edit</button>
+    </form>
+</div>
