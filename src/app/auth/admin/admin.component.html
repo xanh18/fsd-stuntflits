@@ -1,0 +1,17 @@
+<p>admin works!</p>
+
+<div *ngFor="let user of userList" >
+  <div>
+    email
+    <li class="red">{{user.email}}</li>
+    username
+    <li class="red">{{user.username}}</li>
+    rol
+    <li class="red">{{user.role}}</li>
+    voornaam
+    <li class="red">{{user.firstname}}</li>
+    achternaam
+    <li class="red">{{user.lastname}}</li>
+    <button type="button" class="btn btn-danger" (click)="handleDelete(user.email)">Danger</button>
+  </div>
+</div>

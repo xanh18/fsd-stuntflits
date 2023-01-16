@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 
 const User = require("../models/user");
 const user = require("../models/user");
+const checkAuth = require("../middleware/check-auth");
+const Discount = require("../models/discount");
 
 const router = express.Router();
 
@@ -67,5 +69,26 @@ router.post("/login", (req, res, next) => {
     });
 });
 
+router.get("", (req, res, next) =>
+{
+  User.find({role: null}).then(users => {
+    if (users) {
+      res.status(200).json({users: users})
+    } else {
+      res.status(404).json({
+        message: "Users niet gevonden"
+      });
+    }
+  });
+});
+
+router.delete("/:email", (req, res, next) => {
+  const user = User.find({email: req.params.email});
+
+  User.deleteOne({email: req.params.email}).then(result => {
+    res.status(200).json({message: "User"})
+  });
+
+});
 
 module.exports = router;

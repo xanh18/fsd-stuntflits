@@ -13,6 +13,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { CreateDisountComponent } from './discount/create-disount/create-disount.component';
 import { CommentComponent } from './discount/comment/comment.component';
+import { AdminComponent } from './auth/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CommentComponent } from './discount/comment/comment.component';
     LoginComponent,
     SignupComponent,
     CreateDisountComponent,
-    CommentComponent
+    CommentComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

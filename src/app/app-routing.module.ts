@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CreateDisountComponent } from './discount/create-disount/create-disount.component';
 import { AuthGuard } from './auth/auth.guard';
+import {AdminComponent} from "./auth/admin/admin.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'create', component: CreateDisountComponent, canActivate: [AuthGuard]},
+  {path: 'admin', component: AdminComponent},
   {path: 'edit/:discountId', component: CreateDisountComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: '' },
 
