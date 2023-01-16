@@ -28,8 +28,13 @@ export class AuthService {
         return this.authStatusListener.asObservable();
       }
 
-    getUser() {
+    getUserId() {
       return this.getAuthData();
+    }
+
+    getUser(userId: string) {
+      return this.http.get<{user: User}>('http://localhost:3000/api/user/profile/' + userId);
+
     }
 
     createUser(username: string, firstname: string, lastname: string, password: string, email: string) {

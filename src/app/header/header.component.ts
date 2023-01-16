@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   
 
   openProfile() {
-    const auth = this.authService.getUser();
+    const auth = this.authService.getUserId();
     const userId = auth?.userId
     return this.router.navigate(['/profile', userId]);
   }

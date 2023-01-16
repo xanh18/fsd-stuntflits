@@ -12,12 +12,20 @@ const user = require("../models/user");
 })
 
 export class ProfileComponent implements OnInit {
-    user!: User;
+    user!: User
 
     constructor( private authService: AuthService) {
     }
 
     ngOnInit() {
+        const auth = this.authService.getUserId();
+        const userId = auth?.userId;
+        console.log(userId);
+        this.authService.getUser(userId!).subscribe(response => {
+            console.log(response.user)
+            this.user = response.user
+          });
+
 
     }
 

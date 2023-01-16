@@ -3,13 +3,13 @@
 <div>
     <form  #signupForm="ngForm">
       <div class="form-group">
-        <input name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel">
+        <input name="email" ngModel type="email" placeholder="{{user.email}}" value="email" #emailInput="ngModel">
       </div>
       <div class="form-group">
-        <input type="firtname" name="firstname" ngModel placeholder="Firstname" #passwordInput="ngModel" >
+        <input type="firtname" name="firstname" ngModel placeholder="{{user.firstname}}" value="firstname" #passwordInput="ngModel" >
       </div>
       <div class="form-group">
-        <input type="lastname" name="lastname" ngModel placeholder="Lastname" #passwordInput="ngModel" >
+        <input type="lastname" name="lastname" ngModel placeholder="{{user.lastname}}" value="lastname" #passwordInput="ngModel" >
       </div>
       <button class="btn btn-primary" type="submit">Edit</button>
     </form>

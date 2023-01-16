@@ -69,4 +69,16 @@ router.post("/login", (req, res, next) => {
     });
 });
 
+router.get("/profile/:id", (req, res, next) => {
+  User.findById(req.params.id).then(user => {
+      if (user) {
+          res.status(200).json({ user })
+      } else {
+          res.status(404).json({
+              message: "User niet gevonden"
+          })
+      }
+  })
+});
+
 module.exports = router;
