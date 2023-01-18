@@ -74,6 +74,26 @@ export class DiscountComponent implements OnInit, OnDestroy{
         });
       });
     });
-  }
+  
+  $(document).ready(function () {
+    $("#search-shop").on("input", function(this: any) {
+
+      var filterValue = $(this).val()
+      var panelValue =  $('#discount-posts .card-title-shop').each(function(this: any, index: any ) {
+
+        if(filterValue === "")
+        {
+          $(this).parent().parent().show()
+        } else if(filterValue === $(this).text())
+        {
+          $(this).parent().parent().show()
+        } else
+        {
+          $(this).parent().parent().hide()
+        }
+      });
+    });
+  });
+}
 }
 
