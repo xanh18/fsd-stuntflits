@@ -3,11 +3,21 @@
 
 
 <select name="filter-category" id="filter-category" class="mt-3 mb-3">
-  <option value="AutoMotor">AutoMotor</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
-</select>
+
+    <option value="">--</option>
+    <option value="ModeAccessoires">Mode & Accessoires</option>
+    <option value="Elektronica">Elektronica</option>
+    <option value="FamilieKinderen">Familei & Kinderen</option>
+    <option value="BeautyGezondheid">Beauty & Gezondheid</option>
+    <option value="HomeLiving">Home & Living</option>
+    <option value="Gaming">Gaming</option>
+    <option value="Boodschappen">Boodschappen </option>
+    <option value="TuinDIY">Tuin & DIY</option>
+    <option value="AutoMotor">Auto & Motor</option>
+    <option value="CultuurVrijetijd">Cultuur & Vrije Tijd</option>
+    <option value="SportOutdoor">Sport & Outdoor</option>
+    <option value="Reizen">Reizen</option>
+  </select>
 
 <div class="row" id="discount-posts">
   <div class="card m-2 pt-2" style="width: 25rem;" *ngFor="let discount of discounts">
@@ -15,7 +25,7 @@
     <img class="card-img-top" [src]="discount.imagePath" [alt]="discount.title">
       <div class="card-body">
          <h5 class="card-title">{{discount.title}}</h5>
-         <p class="font-italic">{{discount.categories}}</p>
+         <p class="font-italic card-title-category">{{discount.categories}}</p>
          <div class="d-flex align-center">
           <p>Geldig tot: &NonBreakingSpace;</p>
           <h6 class="card-title ml-auto">{{ discount.expirydate}}</h6>
