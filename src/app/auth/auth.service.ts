@@ -39,6 +39,7 @@ export class AuthService {
 
     updateUser(id: string, email: string, firstname: string, lastname: string) {
       let body = {
+        id,
         email,
         firstname,
         lastname
