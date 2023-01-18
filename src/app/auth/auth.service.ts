@@ -37,6 +37,19 @@ export class AuthService {
 
     }
 
+    updateUser(id: string, email: string, firstname: string, lastname: string) {
+      let body = {
+        email,
+        firstname,
+        lastname
+      }
+
+      this.http.put("http://localhost:3000/api/user/edit/" + id, body).subscribe(response => {
+        console.log(response);
+        this.router.navigate(["/"]);
+      });
+    }
+
     createUser(username: string, firstname: string, lastname: string, password: string, email: string) {
         const createAuthData: CreateAuthData = {username: username, firstname: firstname, lastname: lastname, password: password, email: email};
         this.http.post("http://localhost:3000/api/user/signup", createAuthData)

@@ -81,4 +81,21 @@ router.get("/profile/:id", (req, res, next) => {
   })
 });
 
+router.put("/edit/:id", (req, res, next) => {
+
+  User.updateOne({id: req.body.id}, {$set: {
+    email: req.body.email,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname 
+  }}).then(result => {
+
+      res.status(200).json({
+          message: "update succesful"
+      })
+
+      console.log(result);
+  })
+})
+
+
 module.exports = router;

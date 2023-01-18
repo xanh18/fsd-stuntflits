@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
 import { UrlSerializer } from "@angular/router";
 import { AuthService } from "../auth/auth.service";
 import { User } from "../models/User";
@@ -26,6 +27,16 @@ export class ProfileComponent implements OnInit {
             this.user = response.user
           });
 
+
+    }
+
+    editProfile(form: NgForm) {
+        if (form.invalid){
+            return;
+          }
+          const auth = this.authService.getUserId();
+          const userId = auth?.userId;
+          this.authService.updateUser(userId!,  form.value.firstname, form.value.lastname, form.value.email);
 
     }
 

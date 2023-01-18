@@ -1,7 +1,7 @@
-<p>Disocunt pagina</p>
+<h1 class="mt-4 mb-4">Alle aanbiedingen</h1>
 
 
-<select name="filter-category" id="filter-category">
+<select name="filter-category" id="filter-category" class="mt-3 mb-3">
   <option value="AutoMotor">AutoMotor</option>
   <option value="saab">Saab</option>
   <option value="mercedes">Mercedes</option>
@@ -9,38 +9,34 @@
 </select>
 
 <div class="row" id="discount-posts">
-<div class="card m-2 p-3" style="width: 18rem;" *ngFor="let discount of discounts">
-    <div class="card-body p-2" id="discount-post">
+  <div class="card m-2 pt-2" style="width: 25rem;" *ngFor="let discount of discounts">
 
-        <h5 class="card-title">{{discount.title}}</h5>
+    <img class="card-img-top" [src]="discount.imagePath" [alt]="discount.title">
+      <div class="card-body">
+         <h5 class="card-title">{{discount.title}}</h5>
+         <p class="font-italic">{{discount.categories}}</p>
+         <div class="d-flex align-center">
+          <p>Geldig tot: &NonBreakingSpace;</p>
+          <h6 class="card-title ml-auto">{{ discount.expirydate}}</h6>
+         </div>
+          <p class="card-text">{{discount.content}}</p>
+          <div class="d-flex align-center">
+            <h6 class="card-title" style="text-decoration: line-through; color: grey;">€&NonBreakingSpace;{{discount.oldprice}}</h6>
+            <h6 class="card-title">€&NonBreakingSpace;{{discount.newprice}}</h6>
+          </div>
 
-        <div class="post-image">
-          <img [src]="discount.imagePath" [alt]="discount.title">
-        </div>
+            <a href="{{discount.shop}}" class="card-title">{{discount.shop}}</a><br>
+            <br>
+            <h6 class="card-title">{{discount.location}}</h6>
 
-        Categorie:
-        <h6 class="card-title-category">{{discount.categories}}</h6>
-        Verval datum:
-        <h6 class="card-title">{{discount.expirydate}}</h6>
-        Omschrijving:
-        <p class="card-text">{{discount.content}}</p>
-        Nieuwe prijs:
-        <h6 class="card-title">{{discount.newprice}}</h6>
-        Oude prijs:
-        <h6 class="card-title">{{discount.oldprice}}</h6>
-        Winkel:
-        <h6 class="card-title">{{discount.shop}}</h6>
-        Locatie:
-        <h6 class="card-title">{{discount.location}}</h6>
-        Omschrijving: <p class="card-text">{{discount.content}}</p>
+      </div>
 
-    </div>
+      <app-comment [discountId]="discount.id" class="border p-2 bg-light"></app-comment>
 
-    <app-comment [discountId]="discount.id" ></app-comment>
-
-    <div *ngIf="userIsAuthenticated">
-      <a [routerLink]="['/edit', discount.id]"  class="btn btn-primary m-2">Bewerk Aanbieding</a>
-      <button type="button" class="btn btn-danger m-2" (click)="handleDelete(discount.id)">verwijder deze aanbieding</button>
-    </div>
+      <div class="mt-3 mb-2" *ngIf="userIsAuthenticated">
+        <a [routerLink]="['/edit', discount.id]"  class="btn btn-outline-primary m-2">Bewerken</a>
+        <button type="button" class="btn btn-outline-danger m-2" (click)="handleDelete(discount.id)">Verwijderen</button>
+      </div>
+      
  </div>
 </div>
