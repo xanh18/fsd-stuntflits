@@ -16,7 +16,7 @@
       </ul>
     <ul class="navbar-nav">
         <li>
-          <a [routerLink]="['/create']" *ngIf="userIsAuthenticated"  class="btn btn-primary mx-2">Nieuwe Aanbieding</a>
+          <a [routerLink]="['/create']" *ngIf="userIsAuthenticated"  class="btn btn-primary m-2">Nieuwe Aanbieding</a>
         </li>
       <li>
         <a [routerLink]="['/admin']" class="btn btn-primary mx-2">beheerpagina</a>
@@ -27,7 +27,10 @@
         <li *ngIf="!userIsAuthenticated">
           <a class="nav-link" routerLink="/signup" routerLinkActive="red">Signup</a>
         </li>
-        <li *ngIf="userIsAuthenticated">
+        <li>
+          <button class="m-2" (click)="openProfile()" *ngIf="userIsAuthenticated">Profile</button>
+        </li>
+        <li class="m-2" *ngIf="userIsAuthenticated">
           <button (click)="onLogout()">Logout</button>
         </li>
     </ul>

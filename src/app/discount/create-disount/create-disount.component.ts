@@ -42,9 +42,28 @@ export class CreateDisountComponent  implements  OnInit{
         this.mode = 'edit';
         this.discountId = paramMap.get('discountId') as string;
         this.discountService.getDiscount(this.discountId).subscribe(discountData =>{
-          this.discount = {id: discountData._id, title: discountData.title, categories: discountData.categories, expirydate: discountData.expirydate, content: discountData.content, newprice: discountData.newprice, oldprice: discountData.oldprice, shop: discountData.shop, location: discountData.location, user: discountData.user, imagePath: discountData.imagePath}
+          this.discount = {id: discountData._id, 
+            title: discountData.title, 
+            categories: discountData.categories, 
+            expirydate: discountData.expirydate, 
+            content: discountData.content, 
+            newprice: discountData.newprice, 
+            oldprice: discountData.oldprice, 
+            shop: discountData.shop, 
+            location: discountData.location, 
+            user: discountData.user, 
+            imagePath: discountData.imagePath}
         });
-        this.form.setValue({title: this.discount.title, categories: this.discount.categories, expirydate: this.discount.expirydate, content: this.discount.content, newprice: this.discount.newprice, oldprice: this.discount.oldprice, shop: this.discount.shop, location: this.discount.location, image: this.discount.imagePath });
+        this.form.setValue({
+          title: this.discount.title, 
+          categories: this.discount.categories, 
+          expirydate: this.discount.expirydate, 
+          content: this.discount.content, 
+          newprice: this.discount.newprice, 
+          oldprice: this.discount.oldprice, 
+          shop: this.discount.shop, 
+          location: this.discount.location, 
+          image: this.discount.imagePath });
       } else
       {
         this.mode = 'create';

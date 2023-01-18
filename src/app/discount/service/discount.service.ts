@@ -18,7 +18,17 @@ export class DiscountService {
   {
 
   }
-  postDiscounts(title: string, categories: string, expirydate:string, content: string, user: string, newprice:string, oldprice:string, shop:string, location:string, image: File)
+  postDiscounts(
+    title: string, 
+    categories: string, 
+    expirydate: string, 
+    content: string, 
+    newprice: string, 
+    oldprice: string, 
+    shop: string, 
+    location: string,
+    user: string, 
+    image: File)
   {
 
     const body = new FormData();
@@ -55,6 +65,7 @@ export class DiscountService {
     return this.http.get<{message: string; discounts: any[] }>(this.baseUrl+'discounts').pipe(map((discountData) => {
       return discountData.discounts.map( discount => {
         return {
+          id: discount._id,
           title: discount.title,
           categories: discount.categories,
           expirydate: discount.expirydate,
@@ -63,9 +74,8 @@ export class DiscountService {
           oldprice: discount.oldprice,
           shop: discount.shop,
           location: discount.location,
-          imagePath: discount.imagePath,
-          id: discount._id,
-          user: discount.user
+          user: discount.user,
+          imagePath: discount.imagePath
         }
       })
     }));
