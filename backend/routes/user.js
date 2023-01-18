@@ -10,6 +10,9 @@ const router = express.Router();
 router.post("/signup", (req, res, next) => {
     bcrypt.hash(req.body.password, 10).then(hash => {
         const user = new User({
+          username: req.body.username,
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
           email: req.body.email,
           password: hash
         });
@@ -56,8 +59,7 @@ router.post("/login", (req, res, next) => {
         message: 'Geldige gebruiker',
         token: token,
         expiresIn: 3600,
-        userId: fetchedUser._id,
-        username: fetchedUser.username
+        userId: fetchedUser._id
       });
     })
     .catch(err => {
@@ -66,6 +68,35 @@ router.post("/login", (req, res, next) => {
         });
     });
 });
+
+router.get("/profile/:id", (req, res, next) => {
+  User.findById(req.params.id).then(user => {
+      if (user) {
+          res.status(200).json({ user })
+      } else {
+          res.status(404).json({
+              message: "User niet gevonden"
+          })
+      }
+  })
+});
+
+router.put("/edit/:id", (req, res, next) => {
+
+  User.updateOne({id: req.body.id}, {$set: {
+    id: req.body.id,
+    email: req.body.email,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname 
+  }}).then(result => {
+
+      res.status(200).json({
+          message: "update succesful"
+      })
+
+      console.log(result);
+  })
+})
 
 
 module.exports = router;

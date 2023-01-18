@@ -1,6 +1,15 @@
 <div>
     <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
       <div class="form-group">
+        <input name="username" ngModel type="username" placeholder="Username" #emailInput="ngModel">
+      </div>
+      <div class="form-group">
+        <input name="firstname" ngModel type="firstname" placeholder="Firstname" #emailInput="ngModel">
+      </div>
+      <div class="form-group">
+        <input name="lastname" ngModel type="lastname" placeholder="Lastname" #emailInput="ngModel">
+      </div>
+      <div class="form-group">
         <input name="email" ngModel type="email" placeholder="E-Mail" #emailInput="ngModel" required email>
         <div *ngIf="emailInput.invalid" class="text-danger">Voer een geldig e-mailadres in.</div>
       </div>
