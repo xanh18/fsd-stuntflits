@@ -104,7 +104,7 @@ router.put("/:id", checkAuth, multer({ storage: storage }).single("image"), (req
         imagePath: imagePath
     });
 
-  Discount.updateOne({_id: req.params.id}, checkAuth, discount).then(result => {
+  Discount.updateOne({_id: req.params.id}, discount).then(result => {
 
         res.status(200).json({
             message: "update succesful"
