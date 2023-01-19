@@ -39,10 +39,11 @@ describe('Creating discount in mongodb', () => {
 
 describe('Reading Details of discount', () => {
   it('returns done if can find discount by id', (done) => {
-      Discount.findById("63c077c8f7934729987ca00a").then(discount => {
+      Discount.findById("63c93f2c054bd6dc3b686ee2").then(discount => {
         console.log(discount);
         if (discount) {
-          assert(discount.shop === "tiel");
+          assert(discount.shop === "Het warme honkje");
+          assert(discount.newprice === "3");
           done();
         } else {
           res.status(404).json({
