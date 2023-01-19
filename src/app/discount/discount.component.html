@@ -7,7 +7,7 @@
     <option value="">--</option>
     <option value="ModeAccessoires">Mode & Accessoires</option>
     <option value="Elektronica">Elektronica</option>
-    <option value="FamilieKinderen">Familei & Kinderen</option>
+    <option value="FamilieKinderen">Familie & Kinderen</option>
     <option value="BeautyGezondheid">Beauty & Gezondheid</option>
     <option value="HomeLiving">Home & Living</option>
     <option value="Gaming">Gaming</option>
@@ -18,6 +18,10 @@
     <option value="SportOutdoor">Sport & Outdoor</option>
     <option value="Reizen">Reizen</option>
   </select>
+
+  <div>
+    <input id="search-shop" type="text" name="search-shop" autocomplete="on" placeholder="Zoek Winkel">
+  </div>
 
 <div class="row" id="discount-posts">
   <div class="card m-2 pt-2" style="width: 25rem;" *ngFor="let discount of discounts">
@@ -36,7 +40,7 @@
             <h6 class="card-title">€&NonBreakingSpace;{{discount.newprice}}</h6>
           </div>
 
-            <a href="{{discount.shop}}" class="card-title">{{discount.shop}}</a><br>
+            <a href="{{discount.shop}}" class="card-title-shop card-title">{{discount.shop}}</a><br>
             <br>
             <h6 class="card-title">{{discount.location}}</h6>
 
