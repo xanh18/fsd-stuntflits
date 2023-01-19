@@ -1,17 +1,25 @@
-<p>admin works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div *ngFor="let user of userList" class="card-admin">
+        <div class="card-body">
+          <h5 class="card-title">email</h5>
+          <p class="">{{user.email}}</p>
 
-<div *ngFor="let user of userList" >
-  <div>
-    email
-    <li class="red">{{user.email}}</li>
-    username
-    <li class="red">{{user.username}}</li>
-    rol
-    <li class="red">{{user.role}}</li>
-    voornaam
-    <li class="red">{{user.firstname}}</li>
-    achternaam
-    <li class="red">{{user.lastname}}</li>
-    <button type="button" class="btn btn-danger" (click)="handleDelete(user.email)">Danger</button>
+          <h5 class="card-title">username</h5>
+          <p class="">{{user.username}}</p>
+
+          <h5 class="card-title">rol</h5>
+          <p class="">{{user.role}}</p>
+
+          <h5 class="card-title">voornaam</h5>
+          <p class="">{{user.firstname}}</p>
+
+          <h5 class="card-title">achternaam</h5>
+          <li class="">{{user.lastname}}</li>
+          <button type="button" class="btn btn-outline-danger" (click)="handleDelete(user.email)">Delete</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

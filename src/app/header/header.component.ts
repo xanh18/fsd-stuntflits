@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { User } from '../models/User';
+import {User} from "../models/User";
+
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,11 @@ import { User } from '../models/User';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+
+  isAdmin: boolean = false;
   userIsAuthenticated = false;
   private authListenerSubs!: Subscription;
+  user!: User;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -21,6 +25,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     .getAuthStatusListener()
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
+    });
+
+    let userObject = this.authService.getUserId();
+    let userid = userObject?.userId
+    this.authService.getUser(userid!).subscribe(user=>{
+      this.user = user.user;
+      if(this.user.role == "admin")
+      {
+        this.isAdmin = true;
+      }
     });
   }
 
@@ -32,7 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authListenerSubs.unsubscribe();
   }
 
-  
+
 
   openProfile() {
     const auth = this.authService.getUserId();

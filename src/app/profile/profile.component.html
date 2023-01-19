@@ -2,12 +2,16 @@
 
 <div>
     <form (submit)="editProfile(signupForm)" #signupForm="ngForm">
+      email
       <div class="form-group">
+
         <input name="email" ngModel type="email" placeholder="{{user.email}}" value="email" #emailInput="ngModel">
       </div>
+      voornaam
       <div class="form-group">
         <input type="firtname" name="firstname" ngModel placeholder="{{user.firstname}}" value="firstname" #passwordInput="ngModel" >
       </div>
+      achternaam
       <div class="form-group">
         <input type="lastname" name="lastname" ngModel placeholder="{{user.lastname}}" value="lastname" #passwordInput="ngModel" >
       </div>

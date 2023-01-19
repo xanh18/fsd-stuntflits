@@ -36,8 +36,7 @@ export class ProfileComponent implements OnInit {
           }
           const auth = this.authService.getUserId();
           const userId = auth?.userId;
-          this.authService.updateUser(userId!,  form.value.firstname, form.value.lastname, form.value.email);
-
+          this.authService.updateUser(userId!,form.value.email,  form.value.firstname, form.value.lastname);
     }
 
 }

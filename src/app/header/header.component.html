@@ -18,7 +18,7 @@
         <li>
           <a [routerLink]="['/create']" *ngIf="userIsAuthenticated"  class="btn btn-primary m-2">Nieuwe Aanbieding</a>
         </li>
-      <li>
+      <li *ngIf="isAdmin">
         <a [routerLink]="['/admin']" class="btn btn-primary mx-2">beheerpagina</a>
       </li>
         <li *ngIf="!userIsAuthenticated">

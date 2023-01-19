@@ -106,8 +106,8 @@ router.get("/profile/:id", (req, res, next) => {
 
 router.put("/edit/:id", (req, res, next) => {
 
-  User.updateOne({id: req.body.id}, {$set: {
-    id: req.body.id,
+  console.log(req.body.email,req.body.firstname,req.body.lastname);
+  User.updateOne({_id: req.params.id}, {$set: {
     email: req.body.email,
     firstname: req.body.firstname,
     lastname: req.body.lastname

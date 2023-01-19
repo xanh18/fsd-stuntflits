@@ -38,33 +38,22 @@ export class AuthService {
     return this.http.delete("http://localhost:3000/api/user/"+ email)
   }
 
-  createUser(password: string, email: string) {
-    const authData: AuthData = {password: password, email: email};
-    this.http.post("http://localhost:3000/api/user/signup", authData)
-      .subscribe(response => {
-        console.log(response);
-        this.router.navigate(["/"]);
-      });
-  }
     getUserId() {
       return this.getAuthData();
     }
 
     getUser(userId: string) {
       return this.http.get<{user: User}>('http://localhost:3000/api/user/profile/' + userId);
-
     }
 
     updateUser(id: string, email: string, firstname: string, lastname: string) {
       let body = {
-        id,
         email,
         firstname,
         lastname
       }
 
       this.http.put("http://localhost:3000/api/user/edit/" + id, body).subscribe(response => {
-        console.log(response);
         this.router.navigate(["/"]);
       });
     }
