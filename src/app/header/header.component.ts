@@ -27,15 +27,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userIsAuthenticated = isAuthenticated;
     });
 
-    let userObject = this.authService.getUserId();
-    let userid = userObject?.userId
-    this.authService.getUser(userid!).subscribe(user=>{
-      this.user = user.user;
-      if(this.user.role == "admin")
-      {
-        this.isAdmin = true;
-      }
-    });
+    if (this.authService.getUserId() != undefined)
+    {
+      let userObject = this.authService.getUserId();
+      let userid = userObject?.userId
+      this.authService.getUser(userid!).subscribe(user=>{
+        this.user = user.user;
+        if(this.user.role == "admin")
+        {
+          this.isAdmin = true;
+        }
+      });
+    }
   }
 
   onLogout() {
