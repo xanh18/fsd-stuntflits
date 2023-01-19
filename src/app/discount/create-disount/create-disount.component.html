@@ -1,37 +1,63 @@
 <!--formulier-->
-<form [formGroup]="form" (submit)="onAddPost()" #postForm="ngForm">
-    <input type="text" placeholder="Post Title" formControlName="title">
-    <input type="text" placeholder="DD-MM-YYYY" formControlName="expirydate">
-    <textarea rows="4" placeholder="Post Content" formControlName="content"></textarea>
-    <input type="text" placeholder="Post New Price" formControlName="newprice">
-    <input type="text" placeholder="Post Old Price" formControlName="oldprice">
-    <input type="text" placeholder="Post Shop" formControlName="shop">
-    <input type="text " placeholder="Post Location" formControlName="location">
-
-
-    <div>
-        <button type="button" (click)="filePicker.click()"></button>
-        <input type="file" #filePicker (change)="onImagePicked($event)">
+<h1 class="mt-4">Nieuwe Aanbieding maken</h1>
+<form class="mt-5" [formGroup]="form" (submit)="onAddPost()" #postForm="ngForm">
+    <div class="form-group">
+        <label>Titel</label>
+        <input class="form-control" type="text" placeholder="Title" formControlName="title">
     </div>
-    <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview && form.get('image')!.valid">
-        <img [src]="imagePreview" [alt]="form.value.title">
+    <div class="form-group">
+        <label>Datum</label>
+        <input class="form-control" type="text" placeholder="DD-MM-YYYY" formControlName="expirydate">
+    </div>
+    <div class="form-group">
+        <label>Beschrijving</label>
+        <textarea class="form-control" rows="4" placeholder="Description" formControlName="content"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Nieuwe prijs</label>
+        <input class="form-control" type="text" placeholder="New Price" formControlName="newprice">
+    </div>
+    <div class="form-group">
+        <label>Oude prijs</label>
+        <input class="form-control" type="text" placeholder="Old Price" formControlName="oldprice">
+    </div>
+    <div class="form-group">
+        <label>Winkel</label>
+        <input class="form-control" type="text" placeholder="Shop" formControlName="shop">
+    </div>
+    <div class="form-group">
+        <label>Locatie</label>
+        <input class="form-control" type="text " placeholder="Location" formControlName="location">
     </div>
 
+    <div class="form-group">
+        <label>Afbeelding</label>
+        <div>
+            <button type="button" (click)="filePicker.click()"></button>
+            <input type="file" #filePicker (change)="onImagePicked($event)">
+        </div>
+        <div class="image-preview" *ngIf="imagePreview !=='' && imagePreview && form.get('image')!.valid">
+            <img [src]="imagePreview" [alt]="form.value.title">
+        </div>
+    </div>
 
-    <select class="custom-select" formControlName="categories">
-        <option value="ModeAccessoires">Mode & Accessoires</option>
-        <option value="Elektronica">Elektronica</option>
-        <option value="FamilieKinderen">Familei & Kinderen</option>
-        <option value="BeautyGezondheid">Beauty & Gezondheid</option>
-        <option value="HomeLiving">Home & Living</option>
-        <option value="Gaming">Gaming</option>
-        <option value="Boodschappen">Boodschappen </option>
-        <option value="TuinDIY">Tuin & DIY</option>
-        <option value="AutoMotor">Auto & Motor</option>
-        <option value="CultuurVrijetijd">Cultuur & Vrije Tijd</option>
-        <option value="SportOutdoor">Sport & Outdoor</option>
-        <option value="Reizen">Reizen</option>
-    </select>
+    <div class="form-group">
+        <label>Titel</label>
+        <select class="custom-select" formControlName="categories">
+            <option value="ModeAccessoires">Mode & Accessoires</option>
+            <option value="Elektronica">Elektronica</option>
+            <option value="FamilieKinderen">Familei & Kinderen</option>
+            <option value="BeautyGezondheid">Beauty & Gezondheid</option>
+            <option value="HomeLiving">Home & Living</option>
+            <option value="Gaming">Gaming</option>
+            <option value="Boodschappen">Boodschappen </option>
+            <option value="TuinDIY">Tuin & DIY</option>
+            <option value="AutoMotor">Auto & Motor</option>
+            <option value="CultuurVrijetijd">Cultuur & Vrije Tijd</option>
+            <option value="SportOutdoor">Sport & Outdoor</option>
+            <option value="Reizen">Reizen</option>
+        </select>
+    </div>
 
-    <button type="submit">Save Discount</button>
+    <button class="btn btn-outline-primary mt-3" type="submit">Save Discount</button>
 </form>
